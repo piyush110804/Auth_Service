@@ -1,6 +1,12 @@
 const express=require('express');
 const router=express.Router();
 const UserController=require('../../controllers/user-controller');
-router.post('/signup',UserController.create);
-router.post('/signin',UserController.signIn);
+const {authValidation}=require('../../middlewares/index');
+
+router.post('/signup',
+ authValidation.validateUserAuth,
+  UserController.create);
+router.post('/signin',
+   authValidation.validateUserAuth,
+  UserController.signIn);
 module.exports=router;
