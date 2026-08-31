@@ -13,13 +13,13 @@ const prepareAndStartServer=()=>{
   app.use('/api',apiRoutes);
   
   app.listen(PORT,async ()=>{
-    const service=new UserService();
+   // const service=new UserService();
   //  const token=service.createToken({email:'dog@gmail.com',
   //     id:1
   //   });
   //    console.log('token:',token)
-  const data= service.verifyToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvZ0BnbWFpbC5jb20iLCJpZCI6MSwiaWF0IjoxNzg4MTY0MjI2LCJleHAiOjE3ODgxNjc4MjZ9.Tn2OgeNAQae9LqpM6TKPQrCttMDTy1VID6us8CmIquI');
-   return console.log(data);
+  // const data= service.verifyToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvZ0BnbWFpbC5jb20iLCJpZCI6MSwiaWF0IjoxNzg4MTY0MjI2LCJleHAiOjE3ODgxNjc4MjZ9.Tn2OgeNAQae9LqpM6TKPQrCttMDTy1VID6us8CmIquI');
+  //  return console.log(data);
    console.log(`server started at port ${PORT}`);
 
 
