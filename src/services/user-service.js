@@ -16,7 +16,8 @@ class UserService{
     }
   }
    async signIn(email,userPlainPassword){
-    const user= await this.userRepository.getByEmail(email);
+     try {
+      const user= await this.userRepository.getByEmail(email);
     const encryptedPassword=user.password;
      const compare=this.comparePassword(userPlainPassword,encryptedPassword);
      if(!compare){
@@ -24,6 +25,27 @@ class UserService{
      }
     const newJWT=this.createToken({email:user.email,id:user.id});
     return newJWT;
+     } catch (error) {
+       console.log('something went wrong in service layer');
+      throw error
+     }
+   }
+
+   async isAuthenticated(token){
+       try {
+         const response=  this.verifyToken(token);
+         if(!response){
+          throw{error:'Invalid token'};
+         }
+         const user= await this.userRepository.getUser(response.id);
+         if(!user){
+          throw {error:'User does not exist'}
+         }
+         return user.id
+       } catch (error) {
+         console.log('something went wrong in service layer');
+      throw error
+       }
    }
    createToken(user){
    try {
