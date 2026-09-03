@@ -17,11 +17,11 @@ const create= async(req,res)=>{
   })
   } catch (error) {
       console.log(error);
-      return res.status(500).json({
+      return res.status(error.statusCode).json({
     data:{},
-    message:'Not able to create user',
+    message:error.message,
     success:false,
-    err:{},
+    err:error.explanation,
   })
     
   }
@@ -42,7 +42,7 @@ const signIn=async(req,res)=>{
     data:{},
     message:'Something went wrong',
     success:false,
-    err:{},
+    err:error,
   })
     
     }
@@ -64,7 +64,7 @@ const isAuthenticated=async (req,res)=>{
     data:{},
     message:'Something went wrong',
     success:false,
-    err:{},
+    err:error,
    })
 }
 }
@@ -84,7 +84,7 @@ const isAdmin= async (req,res)=>{
     data:{},
     message:'Something went wrong',
     success:false,
-    err:{},
+    err:error,
    })
     
   }
